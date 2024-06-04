@@ -15,7 +15,7 @@ export default function App({ Component, pageProps : { session, ...pageProps } }
     <SessionProvider session={session}>
       <NextUIProvider navigate={router.push}>
         <NextThemesProvider>
-          <div className="h-screen max-w-screen-md mx-auto">
+          <div className="h-screen w-full max-w-screen-md mx-auto overflow-hidden">
             <Component {...pageProps} />
           </div>
         </NextThemesProvider>
