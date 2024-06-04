@@ -7,7 +7,8 @@ export const authOptions = {
         clientId: process.env.KAKAO_CLIENT_ID || "",
         clientSecret: process.env.KAKAO_CLIENT_SECRET || ""
     })
-  ]
+  ],
+  secret : process.env.JWT_SECRET
 }
 
 export default NextAuth(authOptions)
