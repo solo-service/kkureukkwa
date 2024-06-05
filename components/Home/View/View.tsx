@@ -1,6 +1,7 @@
 import { db } from "@/config/firebase";
+import { MarkerType } from "@/types/marker";
 import { Avatar } from "@nextui-org/react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,32 +13,18 @@ export interface PostType {
     author : string;
 }
   
-export default function View({postid} : {postid : number}){
+export default function View({id} : {id : string}){
 
-    const [view,setView] = useState<PostType>();
+    const [view,setView] = useState<MarkerType>();
     const viewRef = useRef(null);
     const [animation,setAnimation] = useState(false);
 
     const fetch = async ()=>{
-        const q = query(
-        collection(db,"post"),
-        where("postid","==",postid)
-        )
-        const snapshot = await getDocs(q);
-        
-        const getView = snapshot.docs.map(doc=>{
-        const {type,postid,name,created,author} = doc.data();
-        return {
-            type,
-            postid,
-            name,
-            created,
-            author
-        }
-        })[0];
-
-        setView(getView);
-
+        const getMarker = (await getDoc(doc(db,"marker",id))).data() as MarkerType;
+        setView({
+            ...getMarker,
+            id
+        });
     }
 
     useEffect(()=>{
@@ -45,28 +32,27 @@ export default function View({postid} : {postid : number}){
         setTimeout(() => {
             setAnimation(true);
         }, 200);
-    },[postid]);
+    },[id]);
 
     return (
         <div 
-        ref={viewRef}
-        className={`py-10 p-4 w-full z-10 bottom-0 left-0 bg-white rounded-3xl rounded-b-none absolute transition-all translate-y-full ${animation ? "translate-y-0" : ""}`}
-        >
-        {
-            view &&
-            <div className='flex gap-3'>
-            <Avatar radius="full" size="lg"/>
-            <div>
-                <dl>
-                <dt className="text-base font-bold">{view.name}</dt>
-                <dd className='text-xs mt-1 text-gray-500'>
-                    {moment(view.created).format("YYYY-MM-DD")}
-                </dd>
-                </dl>
-                <p className="text-xs mt-5 text-gray-500">제보자 - {view.author}</p>
-            </div>
-            </div>
-        }
+            ref={viewRef}
+            className={`py-10 p-4 w-full z-10 bottom-0 left-0 bg-white rounded-3xl rounded-b-none absolute transition-all ${animation ? "translate-y-0" : "translate-y-full"}`}
+            >
+            {
+                view &&
+                <div className='flex gap-3'>
+                    <Avatar radius="full" size="lg" name={view.type}/>
+                    <div>
+                        <dl>
+                            <dt className="text-base font-bold">{view.name}</dt>
+                            <dd className='text-xs mt-1 text-gray-500'>{view.address}</dd>
+                            <dd className='text-xs mt-2 text-gray-500'>{moment(view.created).format("YYYY-MM-DD")}</dd>
+                        </dl>
+                        <p className="text-xs mt-5 text-gray-500">제보자 - {view.author}</p>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

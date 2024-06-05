@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 
 import { fontSans, fontMono } from "@/config/fonts";
 import "@/styles/globals.css";
+import { RecoilRoot } from "recoil";
 
 export default function App({ Component, pageProps : { session, ...pageProps } }: AppProps) {
   const router = useRouter();
@@ -15,9 +16,11 @@ export default function App({ Component, pageProps : { session, ...pageProps } }
     <SessionProvider session={session}>
       <NextUIProvider navigate={router.push}>
         <NextThemesProvider>
-          <div className="h-screen w-full max-w-screen-md mx-auto overflow-hidden">
-            <Component {...pageProps} />
-          </div>
+          <RecoilRoot>
+            <div className="h-screen w-full max-w-screen-md mx-auto overflow-hidden">
+              <Component {...pageProps} />
+            </div>
+          </RecoilRoot>
         </NextThemesProvider>
       </NextUIProvider>
     </SessionProvider>

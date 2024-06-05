@@ -1,9 +1,14 @@
 export interface MarkerType {
-    postid: number;
+    created: number;
+    address: string;
     position: Position;
-}
-
-export interface Position {
-    lat: number;
+    name: string;
+    author: string;
+    type: string;
+    id: string;
+  }
+  
+  export interface Position {
     lng: number;
-}
+    lat: number;
+  }

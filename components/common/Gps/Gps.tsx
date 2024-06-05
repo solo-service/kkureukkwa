@@ -1,4 +1,3 @@
-import { useGeolocation } from '@/hooks/useGeolocation';
 import React from 'react'
 import { MdOutlineGpsFixed } from 'react-icons/md'
 
@@ -34,7 +33,7 @@ export default function Gps({setLocation} : {setLocation : any}) {
 
   return (
     <div 
-        className="fixed left-[5%] bottom-[5%] bg-white rounded-full w-10 h-10 z-10 text-xl flex items-center justify-center border cursor-pointer"
+        className="absolute left-[5%] bottom-[5%] bg-white rounded-full w-10 h-10 z-10 text-xl flex items-center justify-center border cursor-pointer"
         onClick={onGpsHandler}
     >
         <MdOutlineGpsFixed />
