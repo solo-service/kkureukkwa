@@ -85,7 +85,7 @@ export default function Home() {
 
       <Navbar setSettingShow={setSettingShow} />
       <Gps setLocation={setLocation} />
-      {viewShow && <View id={id} />}
+      {viewShow && <View id={id} setViewShow={setViewShow}/>}
       {settingShow && <Setting setSettingShow={setSettingShow}/>}
     </div>
   );

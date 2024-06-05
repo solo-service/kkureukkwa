@@ -45,6 +45,7 @@ export default function index() {
         author: getUserDB.name,
         name,
         created: Date.now(),
+        authorUid : session.user.id
       });
       nextButtonHandler();
     } catch (e) {
