@@ -9,14 +9,12 @@ import Gps from '@/components/common/Gps/Gps';
 export default function Home() {
 
   const {location,setLocation} = useGeolocation();
-
   const {markers} = useGetMarkers();
   const [viewShow,setViewShow] = useState(false);
+  const [id,setId] = useState("");
 
-  const [postid,setPostid] = useState(0);
-
-  const onMarkerHanlder = (postid : number)=>{
-    setPostid(postid);
+  const onMarkerHanlder = (id : string)=>{
+    setId(id);
     setViewShow(true);
   }
 
@@ -64,9 +62,9 @@ export default function Home() {
                   },
                   isPanto : true
                 }))
-                onMarkerHanlder(marker.postid)
+                onMarkerHanlder(marker.id)
               }}
-              key={marker.postid}
+              key={marker.id}
               position={{
                 lat: marker.position.lat,
                 lng: marker.position.lng,
@@ -78,8 +76,8 @@ export default function Home() {
 
       <Navbar/>
       <Gps setLocation={setLocation}/>
-      { viewShow && <View postid={postid}/> }
-
+      { viewShow && <View id={id}/> }
+      {/* <Setting/> */}
     </div>
   )
 }
