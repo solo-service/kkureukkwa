@@ -4,12 +4,15 @@ import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
+import { RecoilRoot } from "recoil";
 
 import { fontSans, fontMono } from "@/config/fonts";
 import "@/styles/globals.css";
-import { RecoilRoot } from "recoil";
 
-export default function App({ Component, pageProps : { session, ...pageProps } }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   const router = useRouter();
 
   return (
