@@ -1,6 +1,6 @@
 import { db } from "@/config/firebase";
 import { Button, Input } from "@nextui-org/react";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -35,12 +35,21 @@ export default function index() {
 
   }
 
-  useEffect(()=>{
+  useEffect(()=>{ // DB에 존재하면 home으로
+    if(!session?.user) return;
+    const fetch = async ()=>{
+      const docRef = doc(db,"users",session.user.id);
+      if((await getDoc(docRef)).exists()){
+        router.push('/home');
+      }
+    }
+    fetch();
+  },[session])
 
+  useEffect(()=>{
     if(status === "unauthenticated"){
       router.push('/');
     }
-
   },[status]);
 
   return (

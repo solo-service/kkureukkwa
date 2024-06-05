@@ -6,10 +6,11 @@ import { SwiperRef, SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 
 import { adrAtom } from "@/atoms/adr";
 import { db } from "@/config/firebase";
+import { useSession } from "next-auth/react";
 
 export default function index() {
   const router = useRouter();
@@ -19,12 +20,21 @@ export default function index() {
   const [storeType, setStoreType] = useState("");
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
+  const {data : session} = useSession();
 
   const onSubmitHanlder = async (event: any) => {
+
+    if(!session) return;
+
     const { name } = event;
 
     try {
       setLoading(true);
+
+      const userDocRef = doc(db,"users",session.user.id);
+
+      const getUserDB = (await getDoc(userDocRef)).data() as any;
+
       await addDoc(collection(db, "marker"), {
         position: {
           lat: adr.postion.La,
@@ -32,7 +42,7 @@ export default function index() {
         },
         address: adr.address,
         type: storeType,
-        author: "땡땡땡",
+        author: getUserDB.name,
         name,
         created: Date.now(),
       });
