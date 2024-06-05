@@ -64,7 +64,6 @@ export default function Report() {
         }}
         onDragEnd={(map) => {
           const getLoaction = map.getCenter();
-
           searchDetailAddrFromCoords(
             getLoaction,
             function (result: any, status: any) {
@@ -98,15 +97,22 @@ export default function Report() {
           type="text"
           value={adr.address}
         />
-        <div className="text-center">
+        <div className="mt-5 flex justify-center gap-5">
           <Button
-            className="mt-5"
             color="primary"
             radius="md"
             type="button"
             onClick={() => router.push("/report/middle")}
           >
             이 장소 등록하기
+          </Button>
+          <Button
+            color="danger"
+            radius="md"
+            type="button"
+            onClick={() => router.push("/home")}
+          >
+            취소
           </Button>
         </div>
       </div>
