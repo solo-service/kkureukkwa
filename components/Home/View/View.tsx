@@ -97,7 +97,7 @@ export default function View({ id,setViewShow }: { id: string,setViewShow : any 
             {
               view.authorUid === session?.user.id &&
                 <div className="mt-5 text-2xl text-center">
-                  <button onClick={()=>removeHandler(view.id,authorUid)} className="text-red-500"><IoTrash /></button>
+                  <button onClick={()=>removeHandler(view.id,view.authorUid)} className="text-red-500"><IoTrash /></button>
                 </div>
             }
           </div>
