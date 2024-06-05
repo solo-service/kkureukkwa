@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 
 import useGetMarkers from "@/hooks/useGetMarkers";
 import { useGeolocation } from "@/hooks/useGeolocation";
@@ -54,26 +54,31 @@ export default function Home() {
           }));
         }}
       >
-        {markers.map((marker) => (
-          <MapMarker
-            key={marker.id}
-            position={{
-              lat: marker.position.lat,
-              lng: marker.position.lng,
-            }}
-            onClick={() => {
-              setLocation((prev) => ({
-                ...prev,
-                center: {
-                  lat: marker.position.lat,
-                  lng: marker.position.lng,
-                },
-                isPanto: true,
-              }));
-              onMarkerHanlder(marker.id);
-            }}
-          />
-        ))}
+        <MarkerClusterer
+          averageCenter={true}
+          minLevel={6}
+        >
+          {markers.map((marker) => (
+            <MapMarker
+              key={marker.id}
+              position={{
+                lat: marker.position.lat,
+                lng: marker.position.lng,
+              }}
+              onClick={() => {
+                setLocation((prev) => ({
+                  ...prev,
+                  center: {
+                    lat: marker.position.lat,
+                    lng: marker.position.lng,
+                  },
+                  isPanto: true,
+                }));
+                onMarkerHanlder(marker.id);
+              }}
+            />
+          ))}
+        </MarkerClusterer>
       </Map>
 
       <Navbar />
