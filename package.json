@@ -8,8 +8,6 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@auth/firebase-adapter": "^2.2.0",
-		"@next-auth/firebase-adapter": "^0.0.2-canary.207",
 		"@nextui-org/react": "^2.4.0",
 		"@react-aria/visually-hidden": "^3.8.10",
 		"@types/node": "20.5.7",
