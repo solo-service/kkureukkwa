@@ -6,6 +6,7 @@ export interface MarkerType {
   author: string;
   type: string;
   id: string;
+  authorUid : string;
 }
 
 export interface Position {

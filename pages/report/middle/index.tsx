@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Avatar, Button, Input } from "@nextui-org/react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -7,10 +6,11 @@ import { SwiperRef, SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 
 import { adrAtom } from "@/atoms/adr";
 import { db } from "@/config/firebase";
+import { useSession } from "next-auth/react";
 
 export default function index() {
   const router = useRouter();
@@ -19,14 +19,22 @@ export default function index() {
   const { register, handleSubmit, getValues } = useForm();
   const [storeType, setStoreType] = useState("");
   const [step, setStep] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
+  const {data : session} = useSession();
 
   const onSubmitHanlder = async (event: any) => {
+
+    if(!session) return;
+
     const { name } = event;
 
     try {
       setLoading(true);
+
+      const userDocRef = doc(db,"users",session.user.id);
+
+      const getUserDB = (await getDoc(userDocRef)).data() as any;
+
       await addDoc(collection(db, "marker"), {
         position: {
           lat: adr.postion.La,
@@ -34,13 +42,13 @@ export default function index() {
         },
         address: adr.address,
         type: storeType,
-        author: "땡땡땡",
+        author: getUserDB.name,
         name,
         created: Date.now(),
+        authorUid : session.user.id
       });
       nextButtonHandler();
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.log(e);
     } finally {
       setLoading(false);
@@ -80,7 +88,7 @@ export default function index() {
   }, [adr]);
 
   return (
-    <div className="h-full relative">
+    <div className="h-full relative px-5">
       <form onSubmit={handleSubmit(onSubmitHanlder)}>
         <Swiper ref={swiperRef} touchRatio={0}>
           <SwiperSlide>
@@ -94,7 +102,7 @@ export default function index() {
               </button>
               <div className="flex-1 flex flex-col items-center justify-center">
                 <p className="text-sm">어떤 가게인가요?</p>
-                <div className="flex justify-center gap-6 mt-8">
+                <div className="flex justify-center gap-6 mt-8 flex-wrap">
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="꽈배기"

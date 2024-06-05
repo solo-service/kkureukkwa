@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
 
 import useGetMarkers from "@/hooks/useGetMarkers";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import View from "@/components/Home/View/View";
 import Navbar from "@/components/Home/Navbar/Navbar";
 import Gps from "@/components/common/Gps/Gps";
+import Setting from "@/components/Home/Setting/Setting";
 
 export default function Home() {
   const { location, setLocation } = useGeolocation();
   const { markers } = useGetMarkers();
   const [viewShow, setViewShow] = useState(false);
+  const [settingShow,setSettingShow] = useState(false);
   const [id, setId] = useState("");
 
   const onMarkerHanlder = (id: string) => {
@@ -54,32 +56,37 @@ export default function Home() {
           }));
         }}
       >
-        {markers.map((marker) => (
-          <MapMarker
-            key={marker.id}
-            position={{
-              lat: marker.position.lat,
-              lng: marker.position.lng,
-            }}
-            onClick={() => {
-              setLocation((prev) => ({
-                ...prev,
-                center: {
-                  lat: marker.position.lat,
-                  lng: marker.position.lng,
-                },
-                isPanto: true,
-              }));
-              onMarkerHanlder(marker.id);
-            }}
-          />
-        ))}
+        <MarkerClusterer
+          averageCenter={true}
+          minLevel={7}
+        >
+          {markers.map((marker) => (
+            <MapMarker
+              key={marker.id}
+              position={{
+                lat: marker.position.lat,
+                lng: marker.position.lng,
+              }}
+              onClick={() => {
+                setLocation((prev) => ({
+                  ...prev,
+                  center: {
+                    lat: marker.position.lat,
+                    lng: marker.position.lng,
+                  },
+                  isPanto: true,
+                }));
+                onMarkerHanlder(marker.id);
+              }}
+            />
+          ))}
+        </MarkerClusterer>
       </Map>
 
-      <Navbar />
+      <Navbar setSettingShow={setSettingShow} />
       <Gps setLocation={setLocation} />
-      {viewShow && <View id={id} />}
-      {/* <Setting/> */}
+      {viewShow && <View id={id} setViewShow={setViewShow}/>}
+      {settingShow && <Setting setSettingShow={setSettingShow}/>}
     </div>
   );
 }
