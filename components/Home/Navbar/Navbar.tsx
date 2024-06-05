@@ -4,7 +4,7 @@ import React from "react";
 import { IoBuildSharp } from "react-icons/io5";
 import { PiMegaphoneSimpleFill } from "react-icons/pi";
 
-export default function Navbar() {
+export default function Navbar({setSettingShow} : {setSettingShow :any}) {
 
   const router = useRouter();
   const {data : session} = useSession();
@@ -14,6 +14,7 @@ export default function Navbar() {
       alert('로그인을 해야합니다.');
       return router.push('/');
     }
+    setSettingShow(true);
   }
 
   const reportHanlder = ()=>{

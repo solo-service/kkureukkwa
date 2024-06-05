@@ -6,11 +6,13 @@ import { useGeolocation } from "@/hooks/useGeolocation";
 import View from "@/components/Home/View/View";
 import Navbar from "@/components/Home/Navbar/Navbar";
 import Gps from "@/components/common/Gps/Gps";
+import Setting from "@/components/Home/Setting/Setting";
 
 export default function Home() {
   const { location, setLocation } = useGeolocation();
   const { markers } = useGetMarkers();
   const [viewShow, setViewShow] = useState(false);
+  const [settingShow,setSettingShow] = useState(false);
   const [id, setId] = useState("");
 
   const onMarkerHanlder = (id: string) => {
@@ -56,7 +58,7 @@ export default function Home() {
       >
         <MarkerClusterer
           averageCenter={true}
-          minLevel={6}
+          minLevel={7}
         >
           {markers.map((marker) => (
             <MapMarker
@@ -81,10 +83,10 @@ export default function Home() {
         </MarkerClusterer>
       </Map>
 
-      <Navbar />
+      <Navbar setSettingShow={setSettingShow} />
       <Gps setLocation={setLocation} />
       {viewShow && <View id={id} />}
-      {/* <Setting/> */}
+      {settingShow && <Setting setSettingShow={setSettingShow}/>}
     </div>
   );
 }
