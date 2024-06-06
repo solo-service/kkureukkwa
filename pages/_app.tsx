@@ -1,13 +1,11 @@
 import type { AppProps } from "next/app";
-
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 import { RecoilRoot } from "recoil";
-
-import { fontSans, fontMono } from "@/config/fonts";
 import "@/styles/globals.css";
+import "@/config/font/pretendard/pretendard-subset.css";
 
 export default function App({
   Component,
@@ -28,9 +26,5 @@ export default function App({
       </NextUIProvider>
     </SessionProvider>
   );
-}
 
-export const fonts = {
-  sans: fontSans.style.fontFamily,
-  mono: fontMono.style.fontFamily,
-};
+}
