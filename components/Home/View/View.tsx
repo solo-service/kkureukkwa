@@ -1,11 +1,11 @@
-import { Avatar } from "@nextui-org/react";
 import { deleteDoc, doc, getDoc } from "firebase/firestore";
 import moment from "moment";
 import { useEffect, useRef, useState } from "react";
 import { MarkerType } from "@/types/marker";
 import { db } from "@/config/firebase";
-import { IoFootsteps, IoTrash } from "react-icons/io5";
+import { IoTrash } from "react-icons/io5";
 import { useSession } from "next-auth/react";
+import StoreType from "@/components/StoreType/StoreType";
 
 export interface PostType {
   type: string;
@@ -22,7 +22,7 @@ export default function View({ id,setViewShow }: { id: string,setViewShow : any 
   const [loading,setLoading] = useState(false);
   const {data : session} = useSession();
 
-  const fetch = async () => {[]
+  const fetch = async () => {
     const getMarker = (
       await getDoc(doc(db, "marker", id))
     ).data() as MarkerType;
@@ -50,9 +50,8 @@ export default function View({ id,setViewShow }: { id: string,setViewShow : any 
 
       try {
         setLoading(true);
-  
-        await deleteDoc(doc(db,"markers",id));
-  
+        console.log(id);
+        await deleteDoc(doc(db,"marker",id));
         alert('삭제가 완료 되었습니다.');
         setAnimation(false);
         setTimeout(() => {
@@ -77,7 +76,11 @@ export default function View({ id,setViewShow }: { id: string,setViewShow : any 
     >
       {view && (
         <div className="flex gap-5">
-          <Avatar className="w-16 h-16" name={view.type} radius="full" />
+          <StoreType 
+            className="w-16 h-16" 
+            name={view.type} 
+            radius="full"
+          />
           <div>
             <dl>
               <dt className="text-lg font-bold">{view.name}</dt>

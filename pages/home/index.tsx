@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk";
-
+import { Map, MarkerClusterer } from "react-kakao-maps-sdk";
 import useGetMarkers from "@/hooks/useGetMarkers";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import View from "@/components/Home/View/View";
 import Navbar from "@/components/Home/Navbar/Navbar";
 import Gps from "@/components/common/Gps/Gps";
 import Setting from "@/components/Home/Setting/Setting";
+import Marker from "@/components/Marker/Marker";
 
 export default function Home() {
   const { location, setLocation } = useGeolocation();
@@ -30,7 +30,6 @@ export default function Home() {
         onDragEnd={(map) => {
           // 드래그 멈췄을때
           const getCenter = map.getCenter();
-
           setLocation((prev) => ({
             ...prev,
             center: {
@@ -54,35 +53,23 @@ export default function Home() {
               lng: getCenter.getLng(),
             },
           }));
+          
         }}
       >
         <MarkerClusterer
           averageCenter={true}
           minLevel={7}
         >
-          {markers.map((marker) => (
-            <MapMarker
-              key={marker.id}
-              position={{
-                lat: marker.position.lat,
-                lng: marker.position.lng,
-              }}
-              onClick={() => {
-                setLocation((prev) => ({
-                  ...prev,
-                  center: {
-                    lat: marker.position.lat,
-                    lng: marker.position.lng,
-                  },
-                  isPanto: true,
-                }));
-                onMarkerHanlder(marker.id);
-              }}
+          {markers.map((marker) => 
+            <Marker 
+              key={marker.id} 
+              setLocation={setLocation}
+              onMarkerHanlder={onMarkerHanlder}
+              {...marker}
             />
-          ))}
+          )}
         </MarkerClusterer>
       </Map>
-
       <Navbar setSettingShow={setSettingShow} />
       <Gps setLocation={setLocation} />
       {viewShow && <View id={id} setViewShow={setViewShow}/>}
