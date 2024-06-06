@@ -95,11 +95,12 @@ export default function Report() {
           className="mt-3"
           size="lg"
           type="text"
+          color="primary"
           value={adr.address}
         />
         <div className="mt-5 flex justify-center gap-5">
           <Button
-            color="primary"
+            className="bg-orange-400 text-white"
             radius="md"
             type="button"
             onClick={() => router.push("/report/middle")}
@@ -107,7 +108,7 @@ export default function Report() {
             이 장소 등록하기
           </Button>
           <Button
-            color="danger"
+            className="bg-red-500 text-white"
             radius="md"
             type="button"
             onClick={() => router.push("/home")}

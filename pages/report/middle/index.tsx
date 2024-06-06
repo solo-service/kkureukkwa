@@ -96,32 +96,32 @@ export default function index() {
               <button
                 className="text-3xl mt-5"
                 type="button"
-                onClick={() => router.push("/report")}
+                onClick={()=>router.push("/report")}
               >
                 <IoArrowBack />
               </button>
               <div className="flex-1 flex flex-col items-center justify-center">
-                <p className="text-sm">어떤 가게인가요?</p>
-                <div className="flex justify-center gap-6 mt-8 flex-wrap">
+                <p className="text-xl font-bold">어떤 가게인가요?</p>
+                <div className="flex justify-center gap-6 mt-10 flex-wrap">
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="꽈배기"
-                    onClick={() => storeClickHandler("kkwabaegi")}
+                    onClick={()=>storeClickHandler("kkwabaegi")}
                   />
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="타코야끼"
-                    onClick={() => storeClickHandler("takoyaki")}
+                    onClick={()=>storeClickHandler("takoyaki")}
                   />
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="붕어빵"
-                    onClick={() => storeClickHandler("bong")}
+                    onClick={()=>storeClickHandler("bong")}
                   />
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="호떡"
-                    onClick={() => storeClickHandler("hodduk")}
+                    onClick={()=>storeClickHandler("hodduk")}
                   />
                 </div>
               </div>
@@ -138,17 +138,17 @@ export default function index() {
                 <IoArrowBack />
               </button>
               <div className="flex-1 flex flex-col items-center justify-center">
-                <p className="text-sm">가게 이름을 알려주세요!</p>
+                <p className="text-xl font-bold">가게 이름을 알려주세요!</p>
                 <Input
-                  className="mt-3"
+                  className="mt-10"
+                  color="primary"
                   size="lg"
                   type="text"
                   {...register("name")}
                 />
                 <div className="text-center">
                   <Button
-                    className="mt-5"
-                    color="primary"
+                    className="mt-5 bg-orange-400 text-white"
                     radius="md"
                     onClick={nextButtonHandler}
                   >
@@ -169,24 +169,24 @@ export default function index() {
                 <IoArrowBack />
               </button>
               <div className="flex-1 flex flex-col justify-center">
-                <dl className="flex gap-5 items-center">
-                  <dt className="font-bold text-xl">주소</dt>
+                <p className="text-xl font-bold text-center">작성한게 맞나요?</p>
+                <dl className="flex gap-5 py-3 px-2 items-center mt-10 border-t">
+                  <dt className="font-sm w-20 text-base font-medium">주소</dt>
                   <dd className="text-base">{adr.address}</dd>
                 </dl>
-                <dl className="flex gap-5 mt-5 items-center">
-                  <dt className="font-bold text-xl">가게타입</dt>
-                  <dd className="mt-2">
-                    <Avatar className="w-20 h-20" name={storeType} />
+                <dl className="flex gap-5 py-3 px-2 items-center border-t">
+                  <dt className="font-sm w-20 text-base font-medium">가게 타입</dt>
+                  <dd>
+                    <Avatar className="w-14 h-14" name={storeType} />
                   </dd>
                 </dl>
-                <dl className="flex gap-5 mt-5 items-center">
-                  <dt className="font-bold text-xl">가게 이름</dt>
+                <dl className="flex gap-5 py-3 px-2 items-center border-t border-b">
+                  <dt className="font-sm w-20 text-base font-medium">가게 이름</dt>
                   <dd className="text-base">{getValues("name")}</dd>
                 </dl>
                 <div className="text-center">
                   <Button
-                    className="mt-5"
-                    color="primary"
+                    className="mt-5 bg-orange-400 text-white"
                     radius="md"
                     type="submit"
                   >
@@ -196,13 +196,13 @@ export default function index() {
               </div>
             </div>
           </SwiperSlide>
+
           <SwiperSlide>
             <div className="h-screen flex flex-col">
               <div className="flex-1 flex flex-col justify-center items-center">
-                <h3>등록이 완료 되었습니다.</h3>
+                <p className="text-xl font-bold">등록이 완료 되었습니다.</p>
                 <Button
-                  className="mt-5"
-                  color="primary"
+                  className="mt-5 bg-orange-400 text-white"
                   radius="md"
                   onClick={() => router.push("/home")}
                 >
@@ -211,6 +211,7 @@ export default function index() {
               </div>
             </div>
           </SwiperSlide>
+
         </Swiper>
       </form>
     </div>
