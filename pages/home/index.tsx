@@ -70,7 +70,6 @@ export default function Home() {
           )}
         </MarkerClusterer>
       </Map>
-
       <Navbar setSettingShow={setSettingShow} />
       <Gps setLocation={setLocation} />
       {viewShow && <View id={id} setViewShow={setViewShow}/>}

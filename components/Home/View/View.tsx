@@ -50,7 +50,8 @@ export default function View({ id,setViewShow }: { id: string,setViewShow : any 
 
       try {
         setLoading(true);
-        await deleteDoc(doc(db,"markers",id));
+        console.log(id);
+        await deleteDoc(doc(db,"marker",id));
         alert('삭제가 완료 되었습니다.');
         setAnimation(false);
         setTimeout(() => {
