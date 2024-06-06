@@ -30,7 +30,6 @@ export default function Home() {
         onDragEnd={(map) => {
           // 드래그 멈췄을때
           const getCenter = map.getCenter();
-
           setLocation((prev) => ({
             ...prev,
             center: {
@@ -54,6 +53,7 @@ export default function Home() {
               lng: getCenter.getLng(),
             },
           }));
+          
         }}
       >
         <MarkerClusterer

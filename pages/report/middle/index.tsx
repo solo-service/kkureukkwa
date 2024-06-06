@@ -1,4 +1,4 @@
-import { Avatar, Button, Input } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoArrowBack } from "react-icons/io5";
@@ -7,10 +7,10 @@ import "swiper/css";
 import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-
 import { adrAtom } from "@/atoms/adr";
 import { db } from "@/config/firebase";
 import { useSession } from "next-auth/react";
+import StoreType from "@/components/StoreType/StoreType";
 
 export default function index() {
   const router = useRouter();
@@ -103,24 +103,24 @@ export default function index() {
               <div className="flex-1 flex flex-col items-center justify-center">
                 <p className="text-xl font-bold">어떤 가게인가요?</p>
                 <div className="flex justify-center gap-6 mt-10 flex-wrap">
-                  <Avatar
+                  <StoreType
                     className="cursor-pointer w-20 h-20"
-                    name="꽈배기"
+                    name="kkwabaegi"
                     onClick={()=>storeClickHandler("kkwabaegi")}
                   />
-                  <Avatar
+                  <StoreType
                     className="cursor-pointer w-20 h-20"
-                    name="타코야끼"
+                    name="takoyaki"
                     onClick={()=>storeClickHandler("takoyaki")}
                   />
-                  <Avatar
+                  <StoreType
                     className="cursor-pointer w-20 h-20"
-                    name="붕어빵"
+                    name="shaped"
                     onClick={()=>storeClickHandler("shaped")}
                   />
-                  <Avatar
+                  <StoreType
                     className="cursor-pointer w-20 h-20"
-                    name="호떡"
+                    name="hotteok"
                     onClick={()=>storeClickHandler("hotteok")}
                   />
                 </div>
@@ -177,7 +177,7 @@ export default function index() {
                 <dl className="flex gap-5 py-3 px-2 items-center border-t">
                   <dt className="font-sm w-20 text-base font-medium">가게 타입</dt>
                   <dd>
-                    <Avatar className="w-14 h-14" name={storeType} />
+                    <StoreType className="w-14 h-14" name={storeType} />
                   </dd>
                 </dl>
                 <dl className="flex gap-5 py-3 px-2 items-center border-t border-b">
