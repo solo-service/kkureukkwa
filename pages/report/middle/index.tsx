@@ -116,12 +116,12 @@ export default function index() {
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="붕어빵"
-                    onClick={()=>storeClickHandler("bong")}
+                    onClick={()=>storeClickHandler("shaped")}
                   />
                   <Avatar
                     className="cursor-pointer w-20 h-20"
                     name="호떡"
-                    onClick={()=>storeClickHandler("hodduk")}
+                    onClick={()=>storeClickHandler("hotteok")}
                   />
                 </div>
               </div>
