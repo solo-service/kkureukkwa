@@ -59,7 +59,7 @@ export default function Setting({setSettingShow} : {setSettingShow : any}) {
   },[]);
 
   return (
-    <div className={`absolute bottom-0 left-0 w-full h-[95%] z-10 border-2 bg-white rounded-2xl py-12 px-5 transition-all ${anmaiton ? "translate-y-0" : "translate-y-full"}`}>
+    <div className={`absolute bottom-0 left-0 w-full h-[95%] z-10 bg-white rounded-2xl py-12 px-5 transition-all ${anmaiton ? "translate-y-0" : "translate-y-full"}`}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <p className="text-sm">닉네임 변경</p>
         {
@@ -74,11 +74,11 @@ export default function Setting({setSettingShow} : {setSettingShow : any}) {
             {...register("nickname",{value : name})}
           />
         }
-        <div className="w-full mt-2 flex gap-4 justify-end">
-          <Button className="bg-orange-400 text-white" size="sm" type="submit">
+        <div className="w-full mt-2 flex gap-5 justify-end">
+          <Button color="primary" size="sm" type="submit">
             닉네임 변경
           </Button>
-          <Button className="bg-red-500 text-white" size="sm" onClick={cancleHanlder}>
+          <Button color="danger" size="sm" onClick={cancleHanlder}>
             취소
           </Button>
         </div>

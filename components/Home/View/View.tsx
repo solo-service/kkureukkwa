@@ -73,20 +73,20 @@ export default function View({ id,setViewShow }: { id: string,setViewShow : any 
   return (
     <div
       ref={viewRef}
-      className={`py-8 p-5 pb-6 w-full z-10 bottom-0 left-0 bg-white rounded-[40px] rounded-b-none absolute border-2 transition-all ${animation ? "translate-y-0" : "translate-y-full"}`}
+      className={`py-10 p-4 w-full z-10 bottom-0 left-0 bg-white rounded-3xl rounded-b-none absolute transition-all ${animation ? "translate-y-0" : "translate-y-full"}`}
     >
       {view && (
-        <div className="flex gap-5">
-          <Avatar className="w-16 h-16" name={view.type} radius="full" />
+        <div className="flex gap-3">
+          <Avatar name={view.type} radius="full" size="lg" />
           <div>
             <dl>
-              <dt className="text-lg font-bold">{view.name}</dt>
-              <dd className="text-sm mt-1 text-gray-500">{view.address}</dd>
-              <dd className="text-xs mt-4 text-gray-500">
+              <dt className="text-base font-bold">{view.name}</dt>
+              <dd className="text-xs mt-1 text-gray-500">{view.address}</dd>
+              <dd className="text-xs mt-2 text-gray-500">
                 {moment(view.created).format("YYYY-MM-DD")}
               </dd>
             </dl>
-            <p className="text-xs mt-1 text-gray-500">제보자 - {view.author}</p>
+            <p className="text-xs mt-5 text-gray-500">제보자 - {view.author}</p>
           </div>
 
           <div className="ml-auto">

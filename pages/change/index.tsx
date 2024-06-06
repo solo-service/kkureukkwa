@@ -60,7 +60,7 @@ export default function index() {
           <p className="text-sm">닉네임</p>
           <Input className="mt-3" size="lg" type="text" {...register('nickname',{value : session.user?.name})}/>
           <div className="mt-5 text-center">
-            <Button type="submit" className="bg-orange-400 text-white">등록</Button>
+            <Button type="submit" color="primary">등록</Button>
           </div>
         </form>
       }
