@@ -18,7 +18,8 @@ export const authOptions : NextAuthOptions = {
         await setDoc(userRef,{
           uid : id,
           name : user.name,
-          createdAt : Date.now()
+          createdAt : Date.now(),
+          first : true
         })
       }
       return true;
