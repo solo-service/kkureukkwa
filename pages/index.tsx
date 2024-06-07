@@ -1,9 +1,9 @@
 import { Button } from "@nextui-org/button";
 import { signIn, useSession } from "next-auth/react";
-import { Avatar } from "@nextui-org/avatar";
 import Link from "next/link";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import StoreType from "@/components/StoreType/StoreType";
+import { useEffect } from "react";
 
 export default function IndexPage() {
 
@@ -18,7 +18,7 @@ export default function IndexPage() {
 
   return (
     <div className="h-full flex flex-col justify-center items-center px-5">
-      <Avatar className="w-32 h-32" />
+      <StoreType name="kkwabaegi" className="w-32 h-32" />
       <Button
         className="w-full bg-[#fee500] mt-10"
         radius="md"

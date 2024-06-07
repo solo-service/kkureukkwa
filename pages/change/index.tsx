@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 export default function index() {
 
   const {data : session,status} = useSession();
-  const {register,handleSubmit,setValue,getValues} = useForm();
+  const {register,handleSubmit} = useForm();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
