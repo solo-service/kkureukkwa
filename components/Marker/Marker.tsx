@@ -25,13 +25,13 @@ export default function Marker({id,position,type,setLocation,onMarkerHanlder} : 
         image={{
             src : MARKERIMAGE[type],
             size : {
-                width : 24,
-                height : 29.7
+                width : 40,
+                height : 49.5
             },
             options : {
                 offset : {
-                x : 24/2,
-                y : 29.7
+                x : 40/2,
+                y : 49.5
                 }
             }
         }}
