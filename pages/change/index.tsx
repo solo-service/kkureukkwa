@@ -21,7 +21,8 @@ export default function index() {
       setLoading(true);
 
       await updateDoc(doc(db,"users",session.user.id),{
-        name : nickname
+        name : nickname,
+        first : false
       });
 
       router.push('/home');
@@ -39,7 +40,8 @@ export default function index() {
     if(!session?.user) return;
     const fetch = async ()=>{
       const docRef = doc(db,"users",session.user.id);
-      if((await getDoc(docRef)).exists()){
+      const data = (await getDoc(docRef)).data() as any;
+      if(!data.first){
         router.push('/home');
       }
     }
@@ -57,7 +59,7 @@ export default function index() {
       {
         session &&
         <form onSubmit={handleSubmit(onSubmit)}>
-          <p className="text-sm">닉네임</p>
+          <p className="text-sm">닉네임을 설정 해주세요!</p>
           <Input className="mt-3" size="lg" type="text" {...register('nickname',{value : session.user?.name})}/>
           <div className="mt-5 text-center">
             <Button type="submit" className="bg-orange-400 text-white">등록</Button>
