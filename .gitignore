@@ -34,6 +34,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-*sw.js
-*sw.js.amp
-*workbox
+/public/sw.js
+/public/sw.js.map
+/public/workbox*.js
+/public/workbox*.map
