@@ -3,9 +3,9 @@ import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
-import { RecoilRoot } from "recoil";
 import "@/styles/globals.css";
 import "@/config/font/pretendard/pretendard-subset.css";
+import { AddressProvider } from "@/provider/AddressProvider";
 
 export default function App({
   Component,
@@ -17,11 +17,11 @@ export default function App({
     <SessionProvider session={session}>
       <NextUIProvider navigate={router.push}>
         <NextThemesProvider>
-          <RecoilRoot>
+          <AddressProvider>
             <div className="h-screen w-full max-w-screen-md mx-auto overflow-hidden">
               <Component {...pageProps} />
             </div>
-          </RecoilRoot>
+          </AddressProvider>
         </NextThemesProvider>
       </NextUIProvider>
     </SessionProvider>
