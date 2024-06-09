@@ -30,6 +30,7 @@ export default function PushHome() {
             }
         }
         localStorage.setItem("pwa","true");
+        setPwa(true);
     }
 
     useEffect(() => {
