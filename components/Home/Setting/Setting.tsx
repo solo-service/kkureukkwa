@@ -1,7 +1,7 @@
 import { db } from "@/config/firebase";
 import { Button, ButtonGroup, Input } from "@nextui-org/react";
 import { doc, getDoc, query, updateDoc } from "firebase/firestore";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -82,6 +82,12 @@ export default function Setting({setSettingShow} : {setSettingShow : any}) {
             취소
           </Button>
         </div>
+        <Button 
+          className="w-full bg-[#fee500] mt-10"
+          radius="md"
+          fullWidth
+          onClick={()=>signOut({callbackUrl : "/"})}
+        >로그아웃</Button>
       </form>
     </div>
   );
