@@ -21,6 +21,7 @@ export default function IndexPage() {
     <FirstCheck>
       <div className="h-full flex flex-col justify-center items-center px-5">
         <StoreType name="kkwabaegi" className="w-32 h-32" />
+        <p className="text-sm mt-4">꾸르꽈에 오신걸 환영해요!</p>
         <Button
           className="w-full bg-[#fee500] mt-10"
           radius="md"

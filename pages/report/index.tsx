@@ -1,20 +1,18 @@
-// eslint-disable-next-line import/order
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { Button, Input } from "@nextui-org/react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import "swiper/css";
 import { useEffect, useRef } from "react";
-import { useRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
-
-import { adrAtom } from "@/atoms/adr";
 import FirstCheck from "@/components/Router/FirstCheck";
+import { useAddressDispatch, useAddressState } from "@/provider/AddressProvider";
 
 export default function Report() {
   const router = useRouter();
   const mapRef = useRef<kakao.maps.Map>(null);
   const markerRef = useRef<kakao.maps.Marker>(null);
-  const [adr, setAdr] = useRecoilState(adrAtom);
+  const addressState = useAddressState();
+  const addressDispatch = useAddressDispatch();
   const { location } = useGeolocation();
 
   function searchDetailAddrFromCoords(coords: any, callback: any) {
@@ -38,14 +36,17 @@ export default function Report() {
           if (status === kakao.maps.services.Status.OK) {
             const { address_name } = result[0].address;
 
-            setAdr((prev) => ({
-              ...prev,
-              postion: {
-                La: getLoaction.getLat(),
-                Ma: getLoaction.getLng(),
-              },
-              address: address_name,
-            }));
+            addressDispatch({
+              type : "change",
+              payload : {
+                postion: {
+                  La: getLoaction.getLat(),
+                  Ma: getLoaction.getLng(),
+                },
+                address: address_name,
+              }
+            });
+
           }
         },
       );
@@ -72,14 +73,17 @@ export default function Report() {
                 if (status === kakao.maps.services.Status.OK) {
                   const { address_name } = result[0].address;
 
-                  setAdr((prev) => ({
-                    ...prev,
-                    postion: {
-                      La: getLoaction.getLat(),
-                      Ma: getLoaction.getLng(),
-                    },
-                    address: address_name,
-                  }));
+                  addressDispatch({
+                    type : "change",
+                    payload : {
+                      postion: {
+                        La: getLoaction.getLat(),
+                        Ma: getLoaction.getLng(),
+                      },
+                      address: address_name,
+                    }
+                  });
+
                 }
               },
             );
@@ -98,7 +102,7 @@ export default function Report() {
             size="lg"
             type="text"
             color="primary"
-            value={adr.address}
+            value={addressState.address}
           />
           <div className="mt-5 flex justify-center gap-5">
             <Button

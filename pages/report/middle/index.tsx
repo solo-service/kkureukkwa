@@ -5,23 +5,22 @@ import { IoArrowBack } from "react-icons/io5";
 import { SwiperRef, SwiperSlide, Swiper } from "swiper/react";
 import "swiper/css";
 import { useRouter } from "next/navigation";
-import { useRecoilValue } from "recoil";
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { adrAtom } from "@/atoms/adr";
 import { db } from "@/config/firebase";
 import { useSession } from "next-auth/react";
 import StoreType from "@/components/StoreType/StoreType";
 import FirstCheck from "@/components/Router/FirstCheck";
+import { useAddressState } from "@/provider/AddressProvider";
 
 export default function index() {
   const router = useRouter();
-  const adr = useRecoilValue(adrAtom);
   const swiperRef = useRef<SwiperRef>(null);
   const { register, handleSubmit, getValues } = useForm();
   const [storeType, setStoreType] = useState("");
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const {data : session} = useSession();
+  const addressState = useAddressState();
 
   const onSubmitHanlder = async (event: any) => {
 
@@ -38,10 +37,10 @@ export default function index() {
 
       await addDoc(collection(db, "marker"), {
         position: {
-          lat: adr.postion.La,
-          lng: adr.postion.Ma,
+          lat: addressState.postion.La,
+          lng: addressState.postion.Ma,
         },
-        address: adr.address,
+        address: addressState.address,
         type: storeType,
         author: getUserDB.name,
         name,
@@ -83,10 +82,10 @@ export default function index() {
   };
 
   useEffect(() => {
-    if (adr.address === "") {
+    if (addressState.address === "") {
       router.push("/report");
     }
-  }, [adr]);
+  }, [addressState]);
 
   return (
     <FirstCheck>
@@ -174,7 +173,7 @@ export default function index() {
                   <p className="text-xl font-bold text-center">작성한게 맞나요?</p>
                   <dl className="flex gap-5 py-3 px-2 items-center mt-10 border-t">
                     <dt className="font-sm w-20 text-base font-medium">주소</dt>
-                    <dd className="text-base">{adr.address}</dd>
+                    <dd className="text-base">{addressState.address}</dd>
                   </dl>
                   <dl className="flex gap-5 py-3 px-2 items-center border-t">
                     <dt className="font-sm w-20 text-base font-medium">가게 타입</dt>
