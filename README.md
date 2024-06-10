@@ -8,7 +8,7 @@
 <br/>
 <br/>
 
-# 서비스 주소
+## 서비스 주소
 
 ### https://kkureukkwa.vercel.app/
 
@@ -16,7 +16,7 @@
 <br/>
 <br/>
 
-# 프로젝트 소개
+## 프로젝트 소개
 
 ⭐ 집 주변에 있는 길거리 음식점들을 서로 공유할 수 있는 서비스 입니다.
 
@@ -32,7 +32,7 @@
 <br/>
 <br/>
 
-# 개발 환경
+## 개발 환경
 
 - Front : Next.js, useContext, tailwindcss, typescript, Next-auth
 - Back : firebase
@@ -43,7 +43,7 @@
 <br/>
 <br/>
 
-# 채택 기술 과 브랜치 전략
+## 채택 기술 과 브랜치 전략
 
 ### Next.js
 
@@ -78,7 +78,7 @@
 <br/>
 <br/>
 
-# 페이지별 기능
+## 페이지별 기능
 
 ### 초기화면
 
@@ -160,7 +160,7 @@
 <br/>
 <br/>
 
-# 트러블 슈팅
+## 트러블 슈팅
 
 ### [카카오 로그인시 유저 저장](https://github.com/solo-service/kkureukkwa.wiki.git)
 
@@ -170,7 +170,7 @@
 <br/>
 <br/>
 
-# 팀원 구성
+## 팀원 구성
 
 <table>
   <tr>
@@ -192,7 +192,7 @@
 <br/>
 <br/>
 
-# 프로젝트 구조
+## 프로젝트 구조
 
 ```
 kkureukkwa
