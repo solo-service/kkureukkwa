@@ -87,7 +87,7 @@
 
 <table>
   <tr>
-    <th style="width: 300px; text-align : center;">초기화면</th>
+    <th style="width: 200px; text-align : center;">초기화면</th>
   </tr>
   <tr style="border-bottom: 1px solid white;">
     <td style="text-align : center">
@@ -107,7 +107,7 @@
 
 <table>
   <tr>
-    <th style="width: 300px; text-align : center;">메인화면</th>
+    <th style="width: 200px; text-align : center;">메인화면</th>
   </tr>
   <tr style="border-bottom: 1px solid white;">
     <td style="text-align : center">
@@ -128,7 +128,7 @@
 
 <table>
   <tr>
-    <th style="width: 300px; text-align : center;">등록화면</th>
+    <th style="width: 200px; text-align : center;">등록화면</th>
   </tr>
   <tr style="border-bottom: 1px solid white;">
     <td style="text-align : center">
@@ -147,7 +147,7 @@
 
 <table>
   <tr>
-    <th style="width: 300px; text-align : center;">닉네임 변경화면</th>
+    <th style="width: 200px; text-align : center;">닉네임 변경화면</th>
   </tr>
   <tr style="border-bottom: 1px solid white;">
     <td style="text-align : center">
@@ -177,8 +177,9 @@
     <th style="width: 200px; text-align : center;">김지유</th>
   </tr>
   <tr style="border-bottom: 1px solid white;">
-    <td style="text-align : center">
+    <td style="text-align : center;">
         <img src="https://github.com/gugumo-service/gugumo_frontend/assets/96280450/d6716133-cc01-451c-af07-0da997725785">
+        <br/>
         <a herf="https://github.com/Banal972">@Banal972</a>
     </td>
   </tr>
